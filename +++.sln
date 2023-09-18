@@ -1,25 +1,143 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34024.191
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "+++", "+++\+++.csproj", "{B2968CFE-A0EC-4B1C-A38F-5DB516E02067}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B2968CFE-A0EC-4B1C-A38F-5DB516E02067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2968CFE-A0EC-4B1C-A38F-5DB516E02067}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2968CFE-A0EC-4B1C-A38F-5DB516E02067}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2968CFE-A0EC-4B1C-A38F-5DB516E02067}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AD549788-49E8-48B4-B231-9F3DC8616D21}
-	EndGlobalSection
-EndGlobal
+using System;
+
+public class Address
+{
+    public string Index { get; set; }
+    public string Country { get; set; }
+    public string City { get; set; }
+    public string Street { get; set; }
+    public string House { get; set; }
+    public string Apartment { get; set; }
+
+    public Address(string index, string country, string city, string street, string house, string apartment)
+    {
+        Index = index;
+        Country = country;
+        City = city;
+        Street = street;
+        House = house;
+        Apartment = apartment;
+    }
+
+    public void DisplayAddress()
+    {
+        Console.WriteLine("valerasarkisan285@gmail.com:");
+        Console.WriteLine("22213: " + Index);
+        Console.WriteLine("kiev: " + Country);
+        Console.WriteLine("Ukraine: " + City);
+        Console.WriteLine("makarenko: " + Street);
+        Console.WriteLine("17B: " + House);
+        Console.WriteLine("0: " + Apartment);
+    }
+}
+public class Converter
+{
+    private double usd;
+    private double eur;
+    private double pln;
+
+    public Converter(double usd, double eur, double pln)
+    {
+        this.usd = usd;
+        this.eur = eur;
+        this.pln = pln;
+    }
+
+    public double ConvertToUSD(double amountInUah)
+    {
+        return amountInUah / usd;
+    }
+
+    public double ConvertToEUR(double amountInUah)
+    {
+        return amountInUah / eur;
+    }
+
+    public double ConvertToPLN(double amountInUah)
+    {
+        return amountInUah / pln;
+    }
+
+    public double ConvertFromUSD(double amountInUSD)
+    {
+        return amountInUSD * usd;
+    }
+
+    public double ConvertFromEUR(double amountInEUR)
+    {
+        return amountInEUR * eur;
+    }
+
+    public double ConvertFromPLN(double amountInPLN)
+    {
+        return amountInPLN * pln;
+    }
+}
+public class Employee
+{
+    private string lastName;
+    private string firstName;
+
+    public Employee(string lastName, string firstName)
+    {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
+    public void CalculateSalaryAndTax(string position, int experience)
+    {
+        double baseSalary = 0;
+
+        // Логіка розрахунку заробітної плати в залежності від посади та стажу
+        if (position == "Student")
+        {
+            baseSalary = 20000;
+        }
+        else if (position == "Розробник")
+        {
+            baseSalary = 25000;
+        }
+
+        // Залежно від стажу може бути додаткова надбавка
+        if (experience >= 5)
+        {
+            baseSalary += 5000;
+        }
+
+        double tax = 0.18 * baseSalary; // Податок 18%
+
+        Console.WriteLine("Інформація про співробітника:");
+        Console.WriteLine("Sarkisian: " + lastName);
+        Console.WriteLine("Valera: " + firstName);
+        Console.WriteLine("Student: " + position);
+        Console.WriteLine("0: " + baseSalary);
+        Console.WriteLine("0: " + tax);
+    }
+}
+public class User
+{
+    public string Login { get; }
+    public string FirstName { get; }
+    public string LastName { get; }
+    public int Age { get; }
+    public DateTime RegistrationDate { get; }
+
+    public User(string login, string firstName, string lastName, int age)
+    {
+        Login = login;
+        FirstName = firstName;
+        LastName = lastName;
+        Age = age;
+        RegistrationDate = DateTime.Now;
+    }
+
+    public void DisplayUserInfo()
+    {
+        Console.WriteLine("Інформація про користувача:");
+        Console.WriteLine("evildeveloper1: " + Login);
+        Console.WriteLine("Valera: " + FirstName);
+        Console.WriteLine("Sarkisian: " + LastName);
+        Console.WriteLine("19: " + Age);
+        Console.WriteLine("18.09.2023: " + RegistrationDate.ToString("yyyy-MM-dd HH:mm:ss"));
+    }
+}
