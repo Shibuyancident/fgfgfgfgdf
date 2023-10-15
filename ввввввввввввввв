@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Інтерфейс для пошуку товарів
+interface ISearchable
+{
+    List<Product> SearchByPrice(double price);
+    List<Product> SearchByCategory(string category);
+    List<Product> SearchByRating(int rating);
+}
+
+// Клас Товар
+class Product
+{
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public string Description { get; set; }
+    public string Category { get; set; }
+}
+
+// Клас Користувач
+class User
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public List<Order> PurchaseHistory { get; set; }
+
+    public User(string username, string password)
+    {
+        Username = username;
+        Password = password;
+        PurchaseHistory = new List<Order>();
+    }
+}
+
+// Клас Замовлення
+class Order
+{
+    public List<Product> Products { get; set; }
+    public int Quantity { get; set; }
+    public double TotalCost { get; set; }
+    public string Status { get; set; }
+}
+
+// Клас Магазин
+class Shop : ISearchable
+{
+    public List<User> Users { get; set; }
+    public List<Product> Products { get; set; }
+    public List<Order> Orders { get; set; }
+
+    public Shop()
+    {
+        Users = new List<User>();
+        Products = new List<Product>();
+        Orders = new List<Order>();
+    }
+
+    public List<Product> SearchByPrice(double price)
+    {
+        return Products.Where(p => p.Price == price).ToList();
+    }
+
+    public List<Product> SearchByCategory(string category)
+    {
+        return Products.Where(p => p.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    public List<Product> SearchByRating(int rating)
+    {
+        // Додайте оцінку для товарів, якщо це необхідно
+        throw new NotImplementedException();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+    }
+}
