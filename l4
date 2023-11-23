@@ -1,0 +1,119 @@
+using System;
+using System.Collections.Generic;
+// class ConfigurationManager
+public class ConfigurationManager
+{
+    private static ConfigurationManager instance;
+
+    private ConfigurationManager() { }
+
+    public static ConfigurationManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ConfigurationManager();
+            }
+            return instance;
+        }
+    }
+
+   
+}
+//class Factory Method
+public interface IGraph
+{
+    void Draw();
+}
+public class LineGraph : IGraph
+{
+    public void Draw() { }
+}
+
+public class BarGraph : IGraph
+{
+    public void Draw() { }
+}
+public abstract class GraphFactory
+{
+    public abstract IGraph CreateGraph();
+}
+public class LineGraphFactory : GraphFactory
+{
+    public override IGraph CreateGraph()
+    {
+        return new LineGraph();
+    }
+}
+
+public class BarGraphFactory : GraphFactory
+{
+    public override IGraph CreateGraph()
+    {
+        return new BarGraph();
+    }
+}
+//class Abstract Factory
+public abstract class Screen { }
+public abstract class Processor { }
+public abstract class Camera { }
+public abstract class TechProductFactory
+{
+    public abstract Screen CreateScreen();
+    public abstract Processor CreateProcessor();
+    public abstract Camera CreateCamera();
+}
+public class LCDScreen : Screen { }
+public class SnapdragonProcessor : Processor { }
+public class DualCamera : Camera { }
+
+public class SmartphoneFactory : TechProductFactory
+{
+    public override Screen CreateScreen()
+    {
+        return new LCDScreen();
+    }
+
+    public override Processor CreateProcessor()
+    {
+        return new SnapdragonProcessor();
+    }
+
+    public override Camera CreateCamera()
+    {
+        return new DualCamera();
+    }
+}
+//class Prototype та Adapter
+public interface IDataPrototype
+{
+    IDataPrototype Clone();
+}
+public class DataTemplate : IDataPrototype
+{
+    public string Data { get; set; }
+
+    public IDataPrototype Clone()
+    {
+        return new DataTemplate { Data = this.Data };
+    }
+}
+public interface IDataAdapter
+{
+    string ConvertData(string input);
+}
+public class XmlToJsonAdapter : IDataAdapter
+{
+    public string ConvertData(string xmlData)
+    {
+        return "JSON data";
+    }
+}
+public class CsvToJsonAdapter : IDataAdapter
+{
+    public string ConvertData(string csvData)
+    {
+        return "JSON data";
+    }
+}
